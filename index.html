@@ -59,6 +59,19 @@
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
+  /* ── お知らせ・日程（data/news.json から表示。空なら非表示） ── */
+  .news{display:none;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;}
+  .news.on{display:block;}
+  .news .wrap{display:grid;grid-template-columns:auto 1fr;gap:10px 32px;align-items:start;}
+  .news .news-lbl{font-family:"Archivo",sans-serif;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--enji);padding-top:6px;white-space:nowrap;}
+  .news .news-body{font-size:.95rem;line-height:1.9;color:var(--sumi);}
+  .news .news-sched{font-family:"Zen Old Mincho",serif;font-size:1.05rem;letter-spacing:.04em;margin:0 0 6px;}
+  .news .news-sched b{color:var(--enji);font-weight:500;margin-right:.6em;}
+  .news ul{list-style:none;margin:0;padding:0;}
+  .news li{display:flex;gap:14px;padding:4px 0;border-top:1px dashed var(--line);}
+  .news li:first-child{border-top:0;}
+  .news li time{font-family:"Archivo",sans-serif;font-size:.8rem;letter-spacing:.08em;color:var(--soft);white-space:nowrap;padding-top:3px;}
+  @media(max-width:760px){.news .wrap{grid-template-columns:1fr;gap:8px;}.news li{flex-direction:column;gap:2px;}}
   .mincho{font-family:"Zen Old Mincho",serif;}
   .arc{font-family:"Archivo",sans-serif;}
 
@@ -547,6 +560,17 @@
   </div>
 </section>
 
+<!-- ===== news（data/news.json を admin から編集） ===== -->
+<section class="news" id="news" aria-label="お知らせ">
+  <div class="wrap">
+    <div class="news-lbl">News</div>
+    <div class="news-body">
+      <p class="news-sched" id="newsSched" hidden></p>
+      <ul id="newsList"></ul>
+    </div>
+  </div>
+</section>
+
 <!-- ===== worries ===== -->
 <section class="sec sec-stone" id="worry">
   <div class="wrap">
@@ -953,6 +977,27 @@
     if(hero){ new IntersectionObserver(([e])=>{ pastHero=!e.isIntersecting; sync(); },{threshold:0.2}).observe(hero); }
     if(contact){ new IntersectionObserver(([e])=>{ atContact=e.isIntersecting; sync(); },{threshold:0.15}).observe(contact); }
   }
+</script>
+<script>
+  // お知らせ・日程: data/news.json を読んで表示。空なら欄ごと出さない
+  (async()=>{
+    try{
+      const r=await fetch('data/news.json?v='+Date.now(),{cache:'no-store'});
+      if(!r.ok) return;
+      const d=await r.json();
+      const sched=(d.schedule||'').trim();
+      const items=(d.items||[]).filter(i=>i&&(i.text||'').trim());
+      if(!sched&&!items.length) return;
+      const s=document.getElementById('newsSched');
+      if(sched){s.innerHTML='<b>次回の日程</b>'+sched.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));s.hidden=false;}
+      const ul=document.getElementById('newsList');
+      ul.innerHTML=items.map(i=>{
+        const esc=t=>String(t).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])).replace(/\n/g,'<br>');
+        return '<li>'+(i.date?'<time>'+esc(i.date)+'</time>':'')+'<span>'+esc(i.text)+'</span></li>';
+      }).join('');
+      document.getElementById('news').classList.add('on');
+    }catch(e){}
+  })();
 </script>
 </body>
 </html>

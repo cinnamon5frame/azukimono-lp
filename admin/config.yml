@@ -1,0 +1,42 @@
+# ▼ backend の identity_url は DecapBridge のダッシュボードに出る値に差し替える
+backend:
+  name: git-gateway
+  repo: cinnamon5frame/azukimono-lp
+  branch: main
+  identity_url: https://auth.decapbridge.com/sites/DECAPBRIDGE_SITE_ID
+  gateway_url: https://gateway.decapbridge.com
+  commit_messages:
+    update: "お知らせ・日程を更新（{{author-name}}）"
+
+locale: ja
+site_url: https://azukimono.netlify.app
+display_url: https://azukimono.netlify.app
+logo_url: https://azukimono.netlify.app/ogp.jpg
+
+media_folder: "images/uploads"
+public_folder: "images/uploads"
+
+collections:
+  - name: "news"
+    label: "お知らせ・日程"
+    description: "ここに書いた内容が、トップページの「お知らせ」欄にそのまま出ます。空にすると欄ごと消えます。"
+    files:
+      - name: "news"
+        label: "お知らせ・日程"
+        file: "data/news.json"
+        format: "json"
+        fields:
+          - label: "次回の日程"
+            name: "schedule"
+            widget: "string"
+            required: false
+            hint: "例：10月の体験レッスン　3日(土)・10日(土)・17日(土) 10:00〜。空欄なら表示されません。"
+          - label: "お知らせ"
+            name: "items"
+            widget: "list"
+            required: false
+            summary: "{{fields.date}}　{{fields.text}}"
+            hint: "新しいものを上に。3件くらいまでが見やすいです。"
+            fields:
+              - { label: "日付", name: "date", widget: "string", required: false, hint: "例：2026.10.01" }
+              - { label: "内容", name: "text", widget: "text", required: true }
