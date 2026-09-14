@@ -6,9 +6,12 @@ backend:
   identity_url: https://auth.decapbridge.com/sites/6b4e17fe-b2dd-48bf-a8b1-491dbd3c7619
   gateway_url: https://gateway.decapbridge.com
   commit_messages:
-    update: "お知らせ・日程を更新（{{author-name}}）"
+    update: "{{collection}}を更新"
 
 locale: ja
+# 右側のプレビュー欄はテンプレートが無く空白になるので出さない
+editor:
+  preview: false
 site_url: https://azukimono.netlify.app
 display_url: https://azukimono.netlify.app
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
