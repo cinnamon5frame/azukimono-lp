@@ -700,7 +700,7 @@
       </div>
       <div class="fstep">
         <span class="fno">Step 02</span>
-        <h4>体験レッスン（¥4,000）</h4>
+        <h4>体験レッスン（<span data-p="beginner.trial">¥4,000</span>）</h4>
         <p>初回は<strong>手ぶらでお越しください</strong>。着物も道具も、すべてお貸しできます。場所は阪急千里線・南千里駅から徒歩約13分（詳しい所在地はお申込み後にご案内します）。</p>
       </div>
       <div class="fstep">
@@ -711,10 +711,10 @@
       <div class="fstep">
         <span class="fno">Step 04</span>
         <h4>続けると決めたら</h4>
-        <p>2回目のレッスンで残金 ¥40,000 をお支払いください。全7回の最終回には、長襦袢から20分で、ご自分ひとりで着られるようになります。</p>
+        <p>2回目のレッスンで残金 <span data-p="beginner.rest">¥40,000</span> をお支払いください。全<span data-p="beginner.sessions">7</span>回の最終回には、長襦袢から20分で、ご自分ひとりで着られるようになります。</p>
       </div>
     </div>
-    <p class="flow-note reveal">※ 行事に向けて訪問着などを着たい方は「礼装初心者さんコース」の体験レッスン（¥5,000）から。続ける場合は2回目に残金 ¥40,000 をお支払いいただきます。</p>
+    <p class="flow-note reveal">※ 行事に向けて訪問着などを着たい方は「礼装初心者さんコース」の体験レッスン（<span data-p="formal.trial">¥5,000</span>）から。続ける場合は2回目に残金 <span data-p="formal.rest">¥40,000</span> をお支払いいただきます。</p>
   </div>
 </section>
 
@@ -766,7 +766,7 @@
     <!-- 主要コース -->
     <div class="menu-grid reveal">
 
-      <div class="mcard">
+      <div class="mcard" data-course="beginner">
         <div class="mhead">
           <h3>着物初心者さんコース</h3>
           <div class="mprice"><span class="big">¥44,000</span><span class="per">全7回（1回あたり ¥6,300）</span></div>
@@ -788,7 +788,7 @@
         </details>
       </div>
 
-      <div class="mcard">
+      <div class="mcard" data-course="formal">
         <div class="mhead">
           <h3>礼装初心者さんコース</h3>
           <div class="mprice"><span class="big">¥45,000</span><span class="per">全6回（1回 ¥7,500）</span></div>
@@ -808,7 +808,7 @@
         </details>
       </div>
 
-      <div class="mcard">
+      <div class="mcard" data-course="ticket">
         <div class="mhead">
           <h3>中級者回数券コース</h3>
           <div class="mprice"><span class="big">¥36,000〜</span><span class="per">6回／8回／10回から選択</span></div>
@@ -837,7 +837,7 @@
         </details>
       </div>
 
-      <div class="mcard">
+      <div class="mcard" data-course="furisode">
         <div class="mhead">
           <h3>振袖他装コース</h3>
           <div class="mprice"><span class="big">¥60,000</span><span class="per">全6回（1回 ¥10,000）</span></div>
@@ -860,7 +860,7 @@
     </div>
 
     <!-- 単発・その他サービス -->
-    <div class="price-list reveal" style="margin-top:56px;">
+    <div class="price-list reveal" style="margin-top:56px;" id="singlesList">
       <div class="price"><h4>単発レッスン<small>1回のみのご受講</small></h4><div class="yen">¥7,000</div></div>
       <div class="price"><h4>お買い物同行<small>3時間・出張費不要／延長1時間につき¥2,000</small></h4><div class="yen">¥12,000</div></div>
       <div class="price"><h4>箪笥の着物整理<small>1日・出張費不要／着ない着物のお引き取りも</small></h4><div class="yen">¥12,000</div></div>
@@ -869,7 +869,7 @@
     <!-- 出張着付 価格表 -->
     <div class="reveal" style="margin-top:56px;">
       <h3 class="mtitle">出張着付け</h3>
-      <div class="dl-grid">
+      <div class="dl-grid" id="dekakeList">
         <div class="dl"><span>小紋</span><b>¥6,000</b></div>
         <div class="dl"><span>訪問着・付け下げ・色無地</span><b>¥8,000</b></div>
         <div class="dl"><span>振袖</span><b>¥12,000</b></div>
@@ -996,6 +996,47 @@
         return '<li>'+(i.date?'<time>'+esc(i.date)+'</time>':'')+'<span>'+esc(i.text)+'</span></li>';
       }).join('');
       document.getElementById('news').classList.add('on');
+    }catch(e){}
+  })();
+</script>
+<script>
+  // 料金: data/prices.json を読んで差し替える。残金・1回あたりは計算で出す（手書きの数字と食い違わないように）
+  (async()=>{
+    const yen=n=>'¥'+Number(n).toLocaleString('ja-JP');
+    const esc=t=>String(t??'').replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+    const per=(total,n)=>Math.round(total/n/100)*100;
+    try{
+      const r=await fetch('data/prices.json?v='+Date.now(),{cache:'no-store'});
+      if(!r.ok) return;
+      const d=await r.json();
+      const vals={};
+      (d.courses||[]).forEach(c=>{
+        const card=document.querySelector('.mcard[data-course="'+c.id+'"]');
+        if(!card) return;
+        const h3=card.querySelector('.mhead h3'); if(h3&&c.name) h3.textContent=c.name;
+        const desc=card.querySelector('.mdesc'); if(desc&&c.desc) desc.textContent=c.desc;
+        const big=card.querySelector('.big'), perEl=card.querySelector('.per'), trialEl=card.querySelector('.mtrial'), tiersEl=card.querySelector('.mtiers');
+        if(c.tiers&&c.tiers.length){
+          const ts=c.tiers.filter(t=>t.sessions&&t.price);
+          const min=Math.min(...ts.map(t=>t.price));
+          if(big) big.textContent=yen(min)+'〜';
+          if(perEl) perEl.textContent=ts.map(t=>t.sessions+'回').join('／')+'から選択';
+          if(tiersEl) tiersEl.innerHTML=ts.map(t=>'<span>'+t.sessions+'回 '+yen(t.price)+'<small>（1回 '+yen(per(t.price,t.sessions))+'）</small></span>').join('');
+        }else if(c.total&&c.sessions){
+          if(big) big.textContent=yen(c.total);
+          if(perEl) perEl.textContent='全'+c.sessions+'回（1回あたり '+yen(per(c.total,c.sessions))+'）';
+          vals[c.id+'.sessions']=c.sessions; vals[c.id+'.total']=yen(c.total);
+          if(c.trial){
+            vals[c.id+'.trial']=yen(c.trial); vals[c.id+'.rest']=yen(c.total-c.trial);
+            if(trialEl) trialEl.innerHTML='初回は<strong>体験レッスン '+yen(c.trial)+'</strong>。続けたい方は2回目に残金'+yen(c.total-c.trial)+'をお支払いください。';
+          }
+        }
+      });
+      document.querySelectorAll('[data-p]').forEach(el=>{const v=vals[el.dataset.p]; if(v!=null) el.textContent=v;});
+      const sl=document.getElementById('singlesList');
+      if(sl&&d.singles&&d.singles.length) sl.innerHTML=d.singles.map(s=>'<div class="price"><h4>'+esc(s.name)+(s.sub?'<small>'+esc(s.sub)+'</small>':'')+'</h4><div class="yen">'+yen(s.price)+'</div></div>').join('');
+      const dl=document.getElementById('dekakeList');
+      if(dl&&d.dekake&&d.dekake.length) dl.innerHTML=d.dekake.map(x=>'<div class="dl"><span>'+esc(x.name)+'</span><b>'+(x.plus?'＋':'')+yen(x.price)+'</b></div>').join('');
     }catch(e){}
   })();
 </script>

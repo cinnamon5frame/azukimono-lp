@@ -40,3 +40,51 @@ collections:
             fields:
               - { label: "日付", name: "date", widget: "string", required: false, hint: "例：2026.10.01" }
               - { label: "内容", name: "text", widget: "text", required: true }
+
+  - name: "prices"
+    label: "料金"
+    description: "総額・体験料・回数を変えると、残金と1回あたりの金額はページ側で自動計算されます。"
+    files:
+      - name: "prices"
+        label: "料金"
+        file: "data/prices.json"
+        format: "json"
+        fields:
+          - label: "コース"
+            name: "courses"
+            widget: "list"
+            allow_add: false
+            allow_remove: false
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "ID（変更しない）", name: "id", widget: "string", required: true }
+              - { label: "コース名", name: "name", widget: "string", required: true }
+              - { label: "総額（円・数字のみ）", name: "total", widget: "number", value_type: "int", required: false, hint: "例：44000。回数券コースは空のまま" }
+              - { label: "回数", name: "sessions", widget: "number", value_type: "int", required: false, hint: "例：7。回数券コースは空のまま" }
+              - { label: "体験レッスン料（円）", name: "trial", widget: "number", value_type: "int", required: false, hint: "体験がないコースは空のまま。残金は自動で計算されます" }
+              - { label: "説明文", name: "desc", widget: "text", required: false }
+              - label: "回数券の選択肢（回数券コースのみ）"
+                name: "tiers"
+                widget: "list"
+                required: false
+                summary: "{{fields.sessions}}回 ¥{{fields.price}}"
+                fields:
+                  - { label: "回数", name: "sessions", widget: "number", value_type: "int" }
+                  - { label: "金額（円）", name: "price", widget: "number", value_type: "int" }
+          - label: "単発・その他"
+            name: "singles"
+            widget: "list"
+            summary: "{{fields.name}}　¥{{fields.price}}"
+            fields:
+              - { label: "名前", name: "name", widget: "string", required: true }
+              - { label: "補足（小さく表示）", name: "sub", widget: "string", required: false }
+              - { label: "金額（円）", name: "price", widget: "number", value_type: "int", required: true }
+          - label: "出張着付け"
+            name: "dekake"
+            widget: "list"
+            summary: "{{fields.name}}　¥{{fields.price}}"
+            hint: "行の追加・削除・並べ替えができます"
+            fields:
+              - { label: "項目", name: "name", widget: "string", required: true }
+              - { label: "金額（円）", name: "price", widget: "number", value_type: "int", required: true }
+              - { label: "追加料金として「＋」を付ける", name: "plus", widget: "boolean", required: false, default: false }
