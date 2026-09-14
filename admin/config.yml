@@ -1,9 +1,9 @@
-# ▼ backend の identity_url は DecapBridge のダッシュボードに出る値に差し替える
+# DecapBridge（https://decapbridge.com/dashboard）で発行された設定
 backend:
   name: git-gateway
   repo: cinnamon5frame/azukimono-lp
   branch: main
-  identity_url: https://auth.decapbridge.com/sites/DECAPBRIDGE_SITE_ID
+  identity_url: https://auth.decapbridge.com/sites/6b4e17fe-b2dd-48bf-a8b1-491dbd3c7619
   gateway_url: https://gateway.decapbridge.com
   commit_messages:
     update: "お知らせ・日程を更新（{{author-name}}）"
@@ -11,7 +11,7 @@ backend:
 locale: ja
 site_url: https://azukimono.netlify.app
 display_url: https://azukimono.netlify.app
-logo_url: https://azukimono.netlify.app/ogp.jpg
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 media_folder: "images/uploads"
 public_folder: "images/uploads"
