@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>あず着物教室｜大阪・南千里の少人数着付け教室</title>
-<meta name="description" content="大阪・南千里の少人数着付け教室。和洋折衷から正統派まで、あなたらしく着物を楽しむ。親の着物を活かすコーディネート相談・箪笥の着物整理まで。初心者さんも安心です。">
+<title>あず着物教室｜大阪・南千里のマンツーマン着付け教室</title>
+<meta name="description" content="大阪・南千里のマンツーマン着付け教室。和洋折衷から正統派まで、あなたらしく着物を楽しむ。親の着物を活かすコーディネート相談・箪笥の着物整理まで。初心者さんも安心です。">
 <link rel="canonical" href="https://azukimono.netlify.app/">
 <meta name="theme-color" content="#5b3a7a">
 
 <!-- OGP / SNS シェア用：LINE・Instagram等でこのリンクを送ったとき、タイトル・説明・画像付きのカードで表示されます -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="あず着物教室">
-<meta property="og:title" content="あず着物教室｜大阪・南千里の少人数着付け教室">
-<meta property="og:description" content="初心者さんも安心の少人数着付け教室。親の着物を活かすコーディネート相談・箪笥の着物整理まで。必要のない高額な着物の販売は一切しません。">
+<meta property="og:title" content="あず着物教室｜大阪・南千里のマンツーマン着付け教室">
+<meta property="og:description" content="初心者さんも安心のマンツーマン着付け教室。親の着物を活かすコーディネート相談・箪笥の着物整理まで。必要のない高額な着物の販売は一切しません。">
 <meta property="og:url" content="https://azukimono.netlify.app/">
 <!-- ↓ 撮影したお写真を 1200×630px で書き出し、ogp.jpg としてこのHTMLと同じ階層に置くと、シェア時にその写真が表示されます -->
 <meta property="og:image" content="https://azukimono.netlify.app/ogp.jpg">
@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%235b3a7a'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23fff' font-family='serif'%3E着%3C/text%3E%3C/svg%3E">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"あず着物教室","description":"大阪・南千里の少人数着付け教室。着付けレッスン・出張着付け・箪笥の着物整理・コーディネート相談。","areaServed":"大阪府（南千里・吹田・北摂エリア）","url":"https://azukimono.netlify.app/","sameAs":["https://www.instagram.com/azuazukimono/","https://ameblo.jp/azukimono2330/"]}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"あず着物教室","description":"大阪・南千里のマンツーマン着付け教室。着付けレッスン・出張着付け・箪笥の着物整理・コーディネート相談。","areaServed":"大阪府（南千里・吹田・北摂エリア）","url":"https://azukimono.netlify.app/","sameAs":["https://www.instagram.com/azuazukimono/","https://ameblo.jp/azukimono2330/"]}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,6 +159,7 @@
     color:var(--sumi);
   }
   .hero h1 .em{color:var(--enji);font-weight:600;}
+  .hero h1 .nw{display:inline-block;} /* スマホで1文字だけ次の行に落ちないように */
   .hero h1 .thin{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:.32em;font-weight:400;letter-spacing:.05em;margin-right:-48px;color:#56524b;margin-top:26px;line-height:2;}
   .hero-tag{font-family:"Archivo",sans-serif;font-style:normal;color:var(--soft);font-size:.8rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:38px;}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
@@ -268,6 +269,16 @@
   .svc p{font-size:.9rem;color:var(--soft);line-height:1.9;font-weight:300;}
   @media(max-width:860px){.svc-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:520px){.svc-grid{grid-template-columns:1fr;}}
+  /* 7枚目（和装写真撮影）：最後の段を横いっぱいに使い、縦長の写真を左に置く */
+  .svc.svc-wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(180px,280px) 1fr;column-gap:36px;padding:0 30px 0 0;}
+  .svc.svc-wide .svc-img{width:100%;height:100%;margin:0;aspect-ratio:3/4;}
+  .svc.svc-wide .svc-body{align-self:center;padding:32px 0;}
+  .svc p.svc-credit{margin-top:14px;font-size:.74rem;letter-spacing:.06em;line-height:1.6;}
+  @media(max-width:520px){
+    .svc.svc-wide{display:block;padding:28px 22px 32px;}
+    .svc.svc-wide .svc-img{width:calc(100% + 44px);height:auto;margin:-28px -22px 18px;aspect-ratio:4/5;}
+    .svc.svc-wide .svc-body{padding:0;}
+  }
 
   /* ---------- feature (箪笥診断) ---------- */
   /* 写真を使わず、言葉で見せる全幅構成。3つのポイントを横並びに */
@@ -423,6 +434,18 @@
   .mdesc{font-size:.93rem;line-height:1.95;color:#4a473f;margin-bottom:12px;}
   .mtrial{font-size:.86rem;line-height:1.85;color:#4a473f;background:var(--stone);padding:12px 16px;margin-bottom:14px;}
   .mtrial strong{color:var(--shu);font-weight:600;}
+  /* 体験レッスンの案内（料金欄の先頭） */
+  .trial-cta{margin-top:40px;display:grid;grid-template-columns:auto 1fr auto;gap:20px 44px;align-items:center;border:1px solid var(--shu);background:#fff;padding:30px 34px;}
+  .trial-cta .tc-price{display:flex;flex-direction:column;gap:4px;}
+  .trial-cta .tc-lbl{font-size:.86rem;letter-spacing:.12em;color:var(--shu);font-weight:600;}
+  .trial-cta .tc-yen{font-family:"Zen Old Mincho",serif;font-size:2.4rem;font-weight:600;line-height:1.2;color:var(--sumi);}
+  .trial-cta .tc-sub{font-size:.8rem;color:var(--soft);}
+  .trial-cta ul{list-style:none;font-size:.92rem;line-height:2;}
+  .trial-cta li{position:relative;padding-left:1.4em;}
+  .trial-cta li::before{content:"";position:absolute;left:.1em;top:.7em;width:.65em;height:.35em;border-left:2px solid var(--shu);border-bottom:2px solid var(--shu);transform:rotate(-45deg);}
+  .trial-cta .btn{white-space:nowrap;text-align:center;}
+  @media(max-width:960px){.trial-cta{grid-template-columns:auto 1fr;}.trial-cta .btn{grid-column:1/-1;}}
+  @media(max-width:640px){.trial-cta{grid-template-columns:1fr;padding:24px 20px;gap:14px;}}
   .mtiers{display:flex;flex-direction:column;gap:6px;font-size:.92rem;margin-bottom:14px;color:var(--sumi);}
   .mtiers small{color:var(--soft);margin-left:6px;}
   .curr{margin-top:auto;border-top:1px solid var(--line);padding-top:14px;}
@@ -535,12 +558,12 @@
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy reveal">
-      <div class="hero-label"><span class="badge-small mincho">少人数・初心者歓迎</span><span class="txt arc">Osaka / Minami-Senri</span></div>
+      <div class="hero-label"><span class="badge-small mincho">マンツーマン・初心者歓迎</span><span class="txt arc">Osaka / Minami-Senri</span></div>
       <h1>着物は、もっと<br><span class="em">気軽</span>でいい。
-        <span class="thin">少人数だから、初めてでもゆっくり。<br>大阪・南千里の着付け教室です。<br>着てみたい気持ちと、あなたの一着に寄り添います。</span>
+        <span class="thin">マンツーマンだから、<span class="nw">初めてでもゆっくり。</span><br>大阪・南千里の着付け教室です。<br>着てみたい気持ちと、あなたの一着に寄り添います。</span>
       </h1>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">まずは話を聞いてみる</a>
+        <a href="#contact" class="btn btn-primary">体験レッスンを申し込む</a>
         <a href="#service" class="btn btn-ghost">レッスンを見る</a>
       </div>
     </div>
@@ -555,7 +578,7 @@
         <button type="button" aria-label="2枚目の写真" aria-current="false"></button>
       </div>
 
-      <div class="tagvert mincho">少人数・初心者歓迎</div>
+      <div class="tagvert mincho">マンツーマン・初心者歓迎</div>
     </div>
   </div>
 </section>
@@ -598,7 +621,7 @@
         <div class="eyebrow"><span class="lbl arc">About</span><span class="rule"></span></div>
         <h2 class="sec-title">楽しむことから、<br>始める着物。</h2>
         <p class="big">和洋折衷から正統派まで。<br>「きちんと」も「自分らしく」も、どちらも楽しんで学べます。</p>
-        <p>ルールに縛られるのではなく、まずは着物のある時間を心地よく感じてもらうこと。あず着物教室は、そんな思いから生まれた少人数の着付け教室です。</p>
+        <p>ルールに縛られるのではなく、まずは着物のある時間を心地よく感じてもらうこと。あず着物教室は、そんな思いから生まれたマンツーマンの着付け教室です。</p>
         <p>不器用な方も、まったくの初心者さんも大丈夫。一人ひとりのペースに寄り添いながら、ゆっくり丁寧にお伝えします。</p>
       </div>
       <div class="about-img reveal"><img src="images/about.jpg" alt="教室でのレッスン風景" loading="lazy" decoding="async"></div>
@@ -643,12 +666,13 @@
              そのカードだけ写真つきに切り替わります（横長 4:3 のお写真が最適）。
              6枚そろってから入れると、見た目が揃ってきれいです。 -->
     <div class="svc-grid reveal">
-      <div class="svc"><img class="svc-img" src="images/svc-1.jpg" alt="レッスンで着上がりを鏡で確認しているところ" loading="lazy" decoding="async"><div class="svc-no mincho">1</div><h3>着付け教室</h3><p>少人数制で、基礎からじっくり。自分で着られるようになることを目指します。</p></div>
+      <div class="svc"><img class="svc-img" src="images/svc-1.jpg" alt="レッスンで着上がりを鏡で確認しているところ" loading="lazy" decoding="async"><div class="svc-no mincho">1</div><h3>着付け教室</h3><p>マンツーマンで、基礎からじっくり。自分で着られるようになることを目指します。</p></div>
       <div class="svc"><img class="svc-img" src="images/svc-2.jpg" alt="出張着付けで着付けを進めているところ" loading="lazy" decoding="async"><div class="svc-no mincho">2</div><h3>出張着付け</h3><p>大切な日のお支度に。ご指定の場所へ伺い、きれいに着付けいたします。</p></div>
-      <div class="svc"><img class="svc-img" src="images/svc-3.jpg" alt="お買い物同行の様子" loading="lazy" decoding="async"><div class="svc-no mincho">3</div><h3>お買い物同行</h3><p>着物や帯を選ぶとき、お店へ一緒に。ご予算とご要望に合わせて、必要なものだけを見極めるお手伝いをします。</p></div>
+      <div class="svc"><img class="svc-img" src="images/svc-3.jpg" alt="お買い物同行の様子" loading="lazy" decoding="async"><div class="svc-no mincho">3</div><h3>お買い物同行</h3><p>着物や帯を選ぶとき、お店へ一緒に。ご予算にあわせて、着物や小物を揃えたい方の最初の一歩をお手伝いします。</p></div>
       <div class="svc"><img class="svc-img" src="images/svc-4.jpg" alt="コーディネート相談の様子" loading="lazy" decoding="async"><div class="svc-no mincho">4</div><h3>コーディネート相談</h3><p>手持ちの着物と帯の組み合わせ方を、一緒に考えてご提案します。お手入れのご相談も。</p></div>
       <div class="svc"><img class="svc-img" src="images/svc-5.jpg" alt="箪笥の着物整理の様子" loading="lazy" decoding="async"><div class="svc-no mincho">5</div><h3>箪笥の着物整理</h3><p>ご自宅の着物を拝見し、使える物・組み合わせ・畳み方・お手入れの仕方まで。着ない着物のお引き取りも。</p></div>
       <div class="svc"><img class="svc-img" src="images/svc-6.jpg" alt="着物でのお出かけ会の様子" loading="lazy" decoding="async"><div class="svc-no mincho">6</div><h3>イベント・お出かけ会</h3><p>着物で食事会やお出かけ会を企画。着る機会づくりまで、まるごと楽しめます。</p></div>
+      <div class="svc svc-wide"><img class="svc-img" src="images/svc-7.jpg" alt="振袖姿でトロンボーンを持つ國重千賀子（和装写真撮影）" loading="lazy" decoding="async"><div class="svc-body"><div class="svc-no mincho">7</div><h3>和装写真撮影</h3><p>プロフィール写真や記念日の撮影に。着物を着て、いつもと違うご自分を写真に残しませんか。演奏会用のアーティスト写真のご相談も承ります。</p><p class="svc-credit">撮影：高島衣代（美容サロン Dali）</p></div></div>
     </div>
   </div>
 </section>
@@ -745,7 +769,7 @@
         <div class="eyebrow"><span class="lbl arc">Instructor</span><span class="rule"></span></div>
         <h2 class="teacher-name">國重 千賀子<small class="arc">Chikako Kunishige</small></h2>
         <p class="teacher-role">あず着物教室 主宰</p>
-        <p>「着物って、もっと自由でいいんだ」。そう感じてもらえる時間をお届けしたくて、少人数の教室を続けています。</p>
+        <p>「着物って、もっと自由でいいんだ」。そう感じてもらえる時間をお届けしたくて、マンツーマンの教室を続けています。</p>
         <p>不器用さんも初心者さんも、どうか身構えないでください。一人ひとりのペースに合わせて、丁寧にお伝えします。あなたの「着てみたい」を、いちばん近くで応援します。</p>
         <p>教室の名前は、看板犬で柴犬の「あずき」から。レッスンの日は、あずきもそっとお出迎えします。</p>
         <p class="teacher-meta">前職は金融機関に勤務。趣味で始めた着物の奥深さに惹かれ、本格的に学び、現在に至ります。</p>
@@ -760,7 +784,22 @@
     <div class="reveal">
       <div class="eyebrow"><span class="lbl arc">Menu &amp; Price</span><span class="rule"></span></div>
       <h2 class="sec-title">レッスンメニュー・<span class="accent">料金</span></h2>
-      <p class="lead">まずは体験レッスンから。続けるかどうかは、体験のあとに決めていただけます。<br>レッスンは<b>平日</b>を中心に、ご相談のうえ日程を決めています。表示はすべて税込です。</p>
+      <p class="lead">レッスンは<b>平日</b>を中心に、ご相談のうえ日程を決めています。表示はすべて税込です。</p>
+    </div>
+
+    <!-- 体験レッスンの案内（金額は data/prices.json から自動で入ります） -->
+    <div class="trial-cta reveal">
+      <div class="tc-price">
+        <span class="tc-lbl">まずは体験レッスンから</span>
+        <span class="tc-yen" data-p="beginner.trial">¥4,000</span>
+        <span class="tc-sub">礼装初心者さんコースは <span data-p="formal.trial">¥5,000</span></span>
+      </div>
+      <ul>
+        <li>マンツーマンで、ご自分のペースで</li>
+        <li>手ぶらでOK。着物も道具もお貸しします</li>
+        <li>続けるかどうかは、体験のあとで決められます</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">体験レッスンを申し込む</a>
     </div>
 
     <!-- 主要コース -->
@@ -862,7 +901,7 @@
     <!-- 単発・その他サービス -->
     <div class="price-list reveal" style="margin-top:56px;" id="singlesList">
       <div class="price"><h4>単発レッスン<small>1回のみのご受講</small></h4><div class="yen">¥7,000</div></div>
-      <div class="price"><h4>お買い物同行<small>3時間・出張費不要／延長1時間につき¥2,000</small></h4><div class="yen">¥12,000</div></div>
+      <div class="price"><h4>お買い物同行<small>1回（6時間以内）・出張費、交通費なし</small></h4><div class="yen">¥12,000</div></div>
       <div class="price"><h4>箪笥の着物整理<small>1日・出張費不要／着ない着物のお引き取りも</small></h4><div class="yen">¥12,000</div></div>
     </div>
 
@@ -910,7 +949,7 @@
     <div class="reveal">
       <div class="eyebrow"><span class="lbl arc">Contact</span></div>
       <h2 class="sec-title">まずは、<span class="accent">気軽に</span>ご相談を。</h2>
-      <p class="lead">「着られるようになりたい」「箪笥を見てほしい」。どんな小さなことでも大丈夫です。<br>下記いずれかからお気軽にメッセージください。</p>
+      <p class="lead">「着られるようになりたい」「箪笥を見てほしい」。どんな小さなことでも大丈夫です。<br>下記いずれかからお気軽にメッセージください。体験レッスンのお申し込みも、こちらからどうぞ。</p>
     </div>
     <div class="contact-btns reveal">
       <a href="https://lin.ee/oWqKJyGJ" class="cbtn" target="_blank" rel="noopener"><span class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span><span class="ch arc">Official LINE</span><span class="cv mincho">友だち追加</span></a>
@@ -926,7 +965,7 @@
 <!-- ===== mobile sticky CTA ===== -->
 <div class="mcta" id="mcta" aria-label="お問い合わせ">
   <a href="https://lin.ee/oWqKJyGJ" class="m-line" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>LINEで相談</a>
-  <a href="#price" class="m-ghost">料金を見る</a>
+  <a href="#price" class="m-ghost">体験・料金を見る</a>
 </div>
 
 <!-- ===== footer ===== -->
